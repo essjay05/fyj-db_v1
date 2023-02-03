@@ -10,11 +10,11 @@ app.set('views', 'views')
 
 // Routes
 app.get('/', (req, res, next) => {
-  res.render()
+  res.render('home', { pageTitle: 'Add User' })
 })
 
 app.get('/users', (req, res, next) => {
-  res.render()
+  res.render('users', { pageTitle: 'Users' })
 })
 
 app.post('/add-user', (req, res, next) => {
