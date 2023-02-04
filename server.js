@@ -4,13 +4,15 @@ const PORT = process.env.PORT || 8888
 
 const app = express()
 const bodyParser = require('body-parser')
+const expressHbs = require('express-handlebars')
 
 const users = []
 
 // Middleware
-app.set('view engine', 'pug')
+app.engine('hbs', expressHbs.engine({ defaultLayout: 'main-layout', extname: 'hbs' }))
+app.set('view engine', 'hbs')
 app.set('views', 'views')
-app.use(bodyParser({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // Routes
 app.get('/', (req, res, next) => {
@@ -18,7 +20,7 @@ app.get('/', (req, res, next) => {
 })
 
 app.get('/users', (req, res, next) => {
-  res.render('users', { pageTitle: 'Users', users: users })
+  res.render('users', { pageTitle: 'Users', hasUsers: users.length > 0, users: users })
 })
 
 app.post('/add-user', (req, res, next) => {

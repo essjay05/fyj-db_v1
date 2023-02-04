@@ -1,0 +1,12 @@
+<section>
+  <h1>{{ pageTitle }}</h1>
+  {{#if hasUsers}}
+    <ul>
+      {{#each users}}
+        <li>{{ this.name }}</li>
+      {{/each}}
+    </ul>
+    {{else}}
+      <h2>No users found.</h2>
+  {{/if}}
+</section>
